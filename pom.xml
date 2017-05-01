@@ -5,9 +5,7 @@
 	<artifactId>issm</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>issm Maven Webapp</name>
-	<url>http://maven.apache.org</url>
-
+	
 	<properties>
 		<!-- base setting -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,7 +22,7 @@
 		<plugin.maven-surefire>2.18.1</plugin.maven-surefire>
 		<skipTests>true</skipTests>
 		<!-- lib versions -->
-		<junit.version>4.11</junit.version>
+		<junit.version>4.10</junit.version>
 		<spring.version>4.0.2.RELEASE</spring.version>
 		<mybatis.version>3.2.2</mybatis.version>
 		<mybatis.spring.version>1.2.2</mybatis.spring.version>
@@ -147,6 +145,12 @@
 			<version>${druid.version}</version>
 		</dependency>
 
+ 	    <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.2.2</version>
+		</dependency>
 		<!-- jackson -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -336,7 +340,6 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>

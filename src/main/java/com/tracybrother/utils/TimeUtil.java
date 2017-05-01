@@ -5,7 +5,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
+/**
+ * 
+ * <pre>
+ * 字符串解析辅助类
+ * </pre>
+ * 
+ * @author 鲁炎
+ * 2015年11月10日
+ */
 public class TimeUtil {
 	
 	public static int getNowWeek() {  

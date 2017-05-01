@@ -7,11 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * 
  * <pre>
- * 和数据库、sql相关的工具
+ * 字符串解析辅助类
  * </pre>
  * 
- * @author 梁韦江 2016年9月11日
+ * @author 鲁炎
+ * 2015年11月10日
  */
 public class SqlUtils {
 	/**
