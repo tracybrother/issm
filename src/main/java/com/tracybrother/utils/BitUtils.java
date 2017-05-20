@@ -3,7 +3,7 @@ package com.tracybrother.utils;
 /**
  * 对byte数组进行位移动操作的工具
  * 
- * @author 梁韦江 2011-6-2
+ * @author 鲁炎 2011-6-2
  */
 public class BitUtils {
 
