@@ -10,7 +10,7 @@ import java.io.InputStream;
  * 文件拷贝--流方式
  * </pre>
  * 
- * @author 黄云
+ * @author 鲁炎
  * 2015年12月17日
  */
 public class CopyFiles {
