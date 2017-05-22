@@ -14,14 +14,22 @@ import com.tracybrother.service.IUserService;
  *
  */
 public class TestUserservice extends BaseTest {
-	@Resource(name="userservice")
+	@Resource(name = "userservice")
 	private IUserService service;
+
 	@Test
-	public void insert(){
+	public void insert() {
 		User user = new User();
-//		user.setId(55);
-		user.setUsername("666");
-		user.setPassword("888");
+		// user.setId(55);
+		user.setUsername("aaa");
+		user.setPassword("55555");
 		service.insert(user);
+	}
+
+	@Test
+	public void testLogin() {
+		
+		service.login("aaa", "55555");
+//		System.out.println(login);
 	}
 }
