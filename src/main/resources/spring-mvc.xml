@@ -35,7 +35,8 @@
 
 	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
 	<mvc:default-servlet-handler />
-
+	
+	
 	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
