@@ -2,6 +2,7 @@ package com.tracybrother.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,5 +58,29 @@ public class QRCodeUtils {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 		return new ResponseEntity<byte[]>(out.toByteArray(), headers, HttpStatus.CREATED);
+	}
+	
+	public static BufferedImage getOut(String url, int width, int height)
+			throws WriterException, IOException {
+		Map<EncodeHintType, Object> hints = new HashMap<EncodeHintType, Object>();
+		hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
+		BitMatrix bitMatrix = new MultiFormatWriter().encode(url, BarcodeFormat.QR_CODE, width, height, hints);// 生成矩阵
+		// 将矩阵转为Image
+		BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix);
+		return image;
+	}
+	
+	/**
+	 * 
+	 * @param image
+	 * @param path "E:\\FD_SMSD\\testFile.png\\"
+	 * @throws IOException      
+	 * @return: void      
+	 * @author luyan
+	 * @date:  2017年5月28日
+	 */
+	public static void saveImageFile(BufferedImage image,String path) throws IOException {
+		 File file = new File(path);
+		ImageIO.write(image, "JPG", file );
 	}
 }
