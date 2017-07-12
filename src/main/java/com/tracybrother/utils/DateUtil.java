@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 和时间相关的一些工具
  * 
- * @author liangwj
+ * @author luyan
  * 
  */
 public class DateUtil {

@@ -55,17 +55,29 @@
 			<version>${junit.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- 大名鼎鼎的com.google.zxing -->
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>
-			<version>3.3.0</version>
+			<version>2.2</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
-			<version>3.3.0</version>
+			<version>2.2</version>
 		</dependency>
 		<!-- springframe start -->
 		<dependency>

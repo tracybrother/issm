@@ -16,8 +16,7 @@ import java.util.regex.Pattern;
  * 字符串解析辅助类
  * </pre>
  * 
- * @author 鲁炎
- * 2015年11月10日
+ * @author 鲁炎 2015年11月10日
  */
 public class StringUtil {
 	/**
@@ -28,6 +27,18 @@ public class StringUtil {
 	 */
 	public static boolean isEmpty(String s) {
 		return s == null || s.trim().length() == 0;
+	}
+
+	/**
+	 * 检测字符串是否为空
+	 * @param s
+	 * @return      
+	 * @return: boolean      
+	 * @author luyan
+	 * @date:  2017年7月12日
+	 */
+	public static boolean hasText(String s) {
+		return ((null != s) && (s.trim().length() > 0));
 	}
 
 	/**
@@ -42,6 +53,7 @@ public class StringUtil {
 
 	/**
 	 * 首字母转大写
+	 * 
 	 * @param str
 	 * @return
 	 */
@@ -55,13 +67,14 @@ public class StringUtil {
 		}
 		return str;
 	}
-	
+
 	/**
 	 * 按驼峰命名方式构建类名
+	 * 
 	 * @return
 	 */
-	public static String setClassName(String className){
-		if(StringUtil.isNotEmpty(className) && className.contains("_")){
+	public static String setClassName(String className) {
+		if (StringUtil.isNotEmpty(className) && className.contains("_")) {
 			String result = "";
 			String[] classNameList = className.split("_");
 			for (String s : classNameList) {
@@ -71,17 +84,19 @@ public class StringUtil {
 		}
 		return upFirstChar(className);
 	}
-	
+
 	/**
 	 * 按驼峰命名方式构建，首字母是小写
+	 * 
 	 * @return
 	 */
-	public static String setName(String className){
+	public static String setName(String className) {
 		return lowFirstChar(setClassName(className));
 	}
-	
+
 	/**
 	 * 首字母转小写
+	 * 
 	 * @param str
 	 * @return
 	 */
@@ -98,6 +113,7 @@ public class StringUtil {
 
 	/**
 	 * 截取string+...
+	 * 
 	 * @param s
 	 * @param size
 	 * @return
@@ -111,12 +127,10 @@ public class StringUtil {
 		return s.substring(0, size) + "...";
 	}
 
-	public static String getMarkString(String Str, String LeftMark,
-			String RightMark) {
+	public static String getMarkString(String Str, String LeftMark, String RightMark) {
 		String tmpreturn = Str;
 		if (tmpreturn.indexOf(LeftMark, 0) != -1) {
-			int LeftMarkPoint = tmpreturn.indexOf(LeftMark, 0)
-					+ LeftMark.length();
+			int LeftMarkPoint = tmpreturn.indexOf(LeftMark, 0) + LeftMark.length();
 			int RightMarkPoint = tmpreturn.indexOf(RightMark, LeftMarkPoint);
 			if (RightMarkPoint != -1) {
 				int ValueLength = RightMarkPoint;
@@ -131,8 +145,7 @@ public class StringUtil {
 
 	}
 
-	public static ArrayList<String> getMarkStringList(String Str,
-			String LeftMark, String RightMark) {
+	public static ArrayList<String> getMarkStringList(String Str, String LeftMark, String RightMark) {
 		ArrayList<String> al = new ArrayList<String>();
 		String tempstr = new String(Str);
 		String tempv = "";
@@ -143,9 +156,7 @@ public class StringUtil {
 			al.add(new String(tempv));
 			// System.out.println(Matcher.quoteReplacement(LeftMark+tempv+RightMark));
 
-			tempstr = Pattern
-					.compile(LeftMark + tempv + RightMark, Pattern.LITERAL)
-					.matcher(tempstr).replaceFirst("");
+			tempstr = Pattern.compile(LeftMark + tempv + RightMark, Pattern.LITERAL).matcher(tempstr).replaceFirst("");
 		}
 		return al;
 	}
@@ -153,21 +164,17 @@ public class StringUtil {
 	public static String filterMark(String strText, String sMark, String eMark) {
 		while (getMarkString(strText, sMark, eMark) != null) {
 			String Markl = getMarkString(strText, sMark, eMark);
-			strText = Pattern.compile(sMark + Markl + eMark, Pattern.LITERAL)
-					.matcher(strText).replaceAll("");
+			strText = Pattern.compile(sMark + Markl + eMark, Pattern.LITERAL).matcher(strText).replaceAll("");
 		}
 		return strText;
 	}
 
 	public static String repalceAll(String strText, String source, String target) {
-		return Pattern.compile(source, Pattern.LITERAL).matcher(strText)
-				.replaceAll(target);
+		return Pattern.compile(source, Pattern.LITERAL).matcher(strText).replaceAll(target);
 	}
 
-	public static String repalceFirst(String strText, String source,
-			String target) {
-		return Pattern.compile(source, Pattern.LITERAL).matcher(strText)
-				.replaceFirst(target);
+	public static String repalceFirst(String strText, String source, String target) {
+		return Pattern.compile(source, Pattern.LITERAL).matcher(strText).replaceFirst(target);
 	}
 
 	/**
@@ -209,6 +216,7 @@ public class StringUtil {
 
 	/**
 	 * 读文件
+	 * 
 	 * @param file
 	 * @return
 	 * @throws IOException
@@ -222,6 +230,7 @@ public class StringUtil {
 
 	/**
 	 * 读文件
+	 * 
 	 * @param is
 	 * @return
 	 * @throws IOException
@@ -242,7 +251,8 @@ public class StringUtil {
 	/**
 	 * 从classpath读取文件
 	 * 
-	 * @param thisObj 调用本方法的当前对象，需要从当前对象中获得ClassLoader，所以必须将对象传进来
+	 * @param thisObj
+	 *            调用本方法的当前对象，需要从当前对象中获得ClassLoader，所以必须将对象传进来
 	 * @param className
 	 * @return
 	 */
@@ -257,7 +267,7 @@ public class StringUtil {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 写文件
 	 */
@@ -277,17 +287,18 @@ public class StringUtil {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 文件拷贝
+	 * 
 	 * @param sourcePath
 	 * @param path
 	 */
-	public static void copyFile(String sourcePath, String path){
+	public static void copyFile(String sourcePath, String path) {
 		String template = StringUtil.readFile(sourcePath);
-		StringUtil.write(path, template);//写文件到项目路径
+		StringUtil.write(path, template);// 写文件到项目路径
 	}
-	
+
 	// java调用cmd命令行方法
 	/**
 	 * 运行可执行文件
@@ -305,8 +316,7 @@ public class StringUtil {
 					process.destroy();
 				}
 			});
-			InputStreamReader inputstreamreader = new InputStreamReader(
-					process.getInputStream());
+			InputStreamReader inputstreamreader = new InputStreamReader(process.getInputStream());
 			char c = (char) inputstreamreader.read();
 			if (c != '\uFFFF')
 				stdout.append(c);
@@ -330,8 +340,7 @@ public class StringUtil {
 			try {
 				inputstreamreader.close();
 			} catch (IOException ioexception2) {
-				System.err.println("RunCmd : Error closing InputStream "
-						+ ioexception2);
+				System.err.println("RunCmd : Error closing InputStream " + ioexception2);
 				return false;
 			}
 		} catch (Throwable e) {
