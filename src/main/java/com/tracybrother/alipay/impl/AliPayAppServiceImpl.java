@@ -14,7 +14,7 @@ import com.tracybrother.alipay.entity.AppsRequest;
 
 /**
  * 支付宝APP支付退款相关接口实现类
- * @author wdd
+ * @author luyan
  *
  */
 public class AliPayAppServiceImpl extends AliPayBase implements AppsService {
