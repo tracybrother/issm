@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper接口开发：
+	 namespace：接口的全类路径名
+ -->
+<mapper namespace="cn.itcast.dao.UserDao">
+<!-- 使用resultMap解决查询列名和javabean属性名不一致映射不成功
+	 Type：表示映射的类型
+	 id：resultMap的唯一标识，也就说明可以定义多个resultMap
+ -->
+<resultMap type="user" id="BaseResultMap">
+<!-- id：主键映射
+	 column：查询字段
+	 property：对应的javabean里面属性
+ -->
+<id column="_id" property="id"/>
+<!--result:普通属性映射  -->
+<result column="_username" property="username"/>
+
+</resultMap>
+
+<!--Mapper中可以写多个sql -->
+
+
+<!-- 查询所有用户 -->
+<select id="findAll" resultType="user">
+	select * from user
+</select>
+
+<!-- 查询性别为男姓张所有用户 
+	parameterType:传递的是包装类型的参数
+	#{}${}:使用ognl表达式进行获取参数
+
+-->
+<select id="findUserByUsernameAndSex" parameterType="queryVo" resultType="user">
+
+select * from user where sex=#{userCustom.sex} 
+and username like '%${userCustom.username}%' 
+
+</select>
+
+<select id="findUserByUsernameAndSexCount" parameterType="queryVo" resultType="int">
+select COUNT(1) from user where sex=#{userCustom.sex} 
+and username like '%${userCustom.username}%' 
+</select>
+
+<!-- 查询性别为男姓张所有用户 
+	parameterType:传递参数类型是map
+	#{}${}:括号里面必须map的key，通过key来获取map的值
+
+-->
+<select id="findUserByUsernameAndSexMap" parameterType="map" resultType="user">
+select * from user where sex=#{sex} and username like '%${username}%'
+</select>
+
+<select id="findUserByColumn" parameterType="user" resultMap="BaseResultMap">
+SELECT id _id,username _username FROM USER
+</select>
+
+
+</mapper>
+

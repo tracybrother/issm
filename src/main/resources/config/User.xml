@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Mapper:mybatis映射文件开始标签，所有的映射文件都已Mapper标签开始
+	namespace：命名空间，隔离sql语句，可以任意定义
+	接口开发中，namespace具有特殊的含义
+	spring tool suit
+ -->
+<mapper namespace="test">
+<!--Mapper中可以写多个sql -->
+
+<!-- 查询所有用户 -->
+<select id="findAll" resultType="com.tracybrother.domain.Test">
+	select * from test
+</select>
+<!-- 添加 -->
+<insert id="insert" parameterType="com.tracybrother.domain.Test">
+	insert into test(id,name,test)
+	values(#{id},#{name},#{test})
+</insert>
+
+
+<!-- 根据用户ID进行查询
+select:mybatis提供用来进行封装查询语句的标签
+id:sql语句的唯一标识，mybatis读取映射文件封装成一个对象Mappedstatement，sql片段是Statement
+	statement的唯一标识。
+parameterType：传递参数类型
+resultType：返回值类型，使用resultType，无论返回的是对象，还是集合全部使用返回单个对象类型
+#{}:占位符，如果说传递参数是基本类型参数，#{??}括号中可以是任意值
+ -->
+
+<!-- <select id="findUserByID" parameterType="int" resultType="com.tracybrother.domain.Test">
+	select * from user where id=#{id}
+</select> -->
+<!-- 
+	id:statement唯一标识
+	parameterType：传递参数类型，String类型
+	resultType：返回值类型，使用resultType，无论返回的是对象，还是集合全部使用返回单个对象类型
+	#｛｝：如果传递参数是字符类型，#{}获取参数的自动加引号，#{username} ==== "张"
+		非字符类型：原样获取
+		如果传递的是pojo类型，使用ognl表达式来获取
+	${}:拼接sql语句，无论是字符还是非字符都是原样获取参数
+	${}:如果传递参数是基本类型，int,long,string等等，${}括号中只能写value
+		如果传递是pojo对象，使用ognl表达式来获取，属性.属性。。
+	
+ -->
+<!-- <select id="findUserByUsername" parameterType="string" resultType="cn.itcast.domain.User">
+SELECT * FROM USER WHERE username LIKE '%${value}%'
+</select>
+ -->
+<!--update:mybatis使用update标签来进行修改
+	id：statement的唯一标识
+	parameterTYpe：传递类型，pojo，获取参数使用ognl表达式，调用javabean的get方法获取值
+  -->
+<!-- <update id="updateUserByID" parameterType="cn.itcast.domain.User">
+update user set username=#{username} where id=#{id}
+</update> -->
+<!-- 
+	需求：根据用户Id进行删除
+	delete:mybatis提供用来进行删除的标签
+	id：唯一标识
+	parameterType：传递基本类型参数
+	 -->
+<!-- <delete id="deleteUserByID" parameterType="int">
+delete from user where id=#{id}
+</delete> -->
+<!--insert:mybatis执行添加使用insert标签
+
+  -->
+<!-- <insert id="insertUser" parameterType="cn.itcast.domain.User"
+ useGeneratedKeys="true" keyProperty="id"> -->
+<!-- selectKey:mybatis专门用来返回添加数据时生成的主键
+	keyProperty：对应生成主键javabean的主键的属性
+	order：mysql自增主键生成策略是在insert语句执行之后才生成的，故使用AFTER
+	resultType：返回值类型，返回主键
+ -->
+<!-- <selectKey keyProperty="id" order="AFTER" resultType="int">
+SELECT LAST_INSERT_ID()
+</selectKey> -->
+
+<!-- 如果主键是字符类型uuid
+	order：mysql不是自增类型主键，inset语句执行之前生成的
+	<selectKey keyProperty="id" order="BEFORE" resultType="string">
+	SELECT uuid()
+	</selectKey>
+ -->
+ 
+ <!-- oracle支持序列主键
+ 	  order:oracle在insert语句执行之前生成的，使用BEFORE
+ 	<selectKey keyProperty="id" order="BEFORE" resultType="string">
+		select 自定义序列.nextval from dual
+	</selectKey>
+ 
+  -->
+
+<!-- insert into user(id,username,birthday,sex,address)
+values(#{id},#{username},#{birthday},#{sex},#{address})
+</insert> -->
+
+</mapper>
+
