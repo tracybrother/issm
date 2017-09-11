@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 用户上下文
  * 
- * @author guoming
+ * @author luyan
  *
  */
 public class Context implements Serializable {
